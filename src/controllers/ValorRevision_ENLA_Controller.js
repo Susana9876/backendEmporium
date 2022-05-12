@@ -15,7 +15,7 @@ export const getValorRevision_ENLA = async (req, res) => {
 export const postValorRevision_ENLA = async (req, res) => {
     let { Valor } = req.body;
 
-    if(Valor == null) Valor = "";
+    if(Valor == null) Valor = " ";
 
     try {
         const pool = await getConnection();

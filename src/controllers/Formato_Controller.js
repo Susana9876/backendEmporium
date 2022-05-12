@@ -63,15 +63,16 @@ export const deleteFormatoById = async (req, res) => {
 };
 
 export const updateFormatoById = async (req, res) => {
-  const { Fecha } = req.body;
+  const { Fecha, Id_Etapa } = req.body;
   try {
     const pool = await getConnection();
     await pool
       .request()
+      .input("Id_Etapa",sql.Int,Id_Etapa)
       .input("Fecha", sql.Date, Fecha)
       .input("Id", req.params.Id)
       .query(queries.updateFormato);
-    res.json({ Fecha });
+    res.json({ Fecha, Id_Etapa });
   } catch (error) {
     res.status(500);
     res.send(error.message);
